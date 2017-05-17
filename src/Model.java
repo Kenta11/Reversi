@@ -2,22 +2,21 @@
 
 import java.util.Random;
 
-class model{
+class Model{
   private int[][] table = new int[8][8];
   private int black, white;
   private int player;
-  private static int BLACK = 1;
-  private static int WHITE = -1;
-  private static int NO_COIN = 0;
+  public static final int BLACK = 1;
+  public static final int WHITE = -1;
+  public static final int NO_COIN = 0;
 
   private boolean[][] enable = new boolean[8][8];
 
   // Default constructor
-  // initializing all variable
-  // decide the first player
-  public model(){
+  public Model(){
     initBoard();
-    color = BLACK;
+    player = BLACK;
+    updateEnable();
   }
 
   // initialize a board
@@ -126,13 +125,13 @@ class model{
   private void updateEnable(){
     for(int y = 0; y < 8; y++){
       for(int x = 0; x < 8; x++){
-        enable[y][x] = judge[y][x];
+        enable[y][x] = judge(x, y);
       }
     }
   }
 
   // return enable[y][x]
-  public boolean getEnable(){
+  public boolean[][] getEnable(){
     return enable;
   }
 
@@ -145,6 +144,21 @@ class model{
     }
 
     return false;
+  }
+
+  // change player
+  public void changePlayer(){
+    player *= -1;
+  }
+
+  // getter for player;
+  public int getPlayer(){
+    return player;
+  }
+
+  // getter for table
+  public int[][] getTable(){
+    return table;
   }
 
 }

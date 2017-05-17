@@ -7,15 +7,13 @@ import javax.swing.ImageIcon;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event;
+import java.awt.event.*;
 
 public class View implements MouseListener{
   private JFrame frame;
   private JPanel board;
   private JButton button[][];
-  private int clicked[2] = new int[2];
-  clicked[0] = 3;
-  clicked[1] = 3;
+  private int clicked[] = {3, 3};
 
   private ImageIcon nocoin = new ImageIcon("./res/nocoin.png");
   private ImageIcon black  = new ImageIcon("./res/black.png");
@@ -51,23 +49,22 @@ public class View implements MouseListener{
     frame.setVisible(true);
   }
 
-  public void update_button(int x, int y, int attribute){
-    if(Model.BLACK){
-      button[y][x] = new JButton(black);
-    }else if(Model.WHITE){
-      button[y][x] = new JButton(white);
-    }else if(Model.NO_COIN){
-      button[y][x] = new JButton(nocoin);
+  public void updateButton(int x, int y, int attribute){
+    switch(attribute){
+      case Model.BLACK:   button[y][x] = new JButton(black);
+      case Model.WHITE:   button[y][x] = new JButton(white);
+      case Model.NO_COIN: button[y][x] = new JButton(nocoin);
+      default: // have to throw exception...
     }
   }
 
-  public void update_button(int board[][]){
+  public void updateButton(int board[][]){
     for(int y = 0; y < 8; y++){
       for(int x = 0; x < 8; x++){
-        update_button(y, x, board[y][x]);
+        updateButton(x, y, board[y][x]);
       }
     }
-    repaint();
+    frame.repaint();
   }
 
   public int getClickedIndexX(){
@@ -79,23 +76,23 @@ public class View implements MouseListener{
   }
 
   // mouse event method
-  private mouseClicked(MouseEvent e){
+  public void mouseClicked(MouseEvent e){
     JButton clickedButton = (JButton)e.getComponent();
     String indexOfTheBoard[] = clickedButton.getActionCommand().split(",", 0);
-    clicked[0] = indexOfTheBoard[0];
-    clicked[1] = indexOfTheBoard[1];
+    clicked[0] = Integer.parseInt(indexOfTheBoard[0]);
+    clicked[1] = Integer.parseInt(indexOfTheBoard[1]);
   }
 
-  private mouseEntered(MouseEvent e){
+  public void mouseEntered(MouseEvent e){
   }
 
-  private mouseExited(MouseEvent e){
+  public void mouseExited(MouseEvent e){
   }
 
-  private mousePressed(MouseEvent e){
+  public void mousePressed(MouseEvent e){
   }
 
-  private mouseReleased(MouseEvent e){
+  public void mouseReleased(MouseEvent e){
   }
 
 }
