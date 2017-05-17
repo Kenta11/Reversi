@@ -1,4 +1,4 @@
-// the Reverci model
+// Reverci model
 
 import java.util.Random;
 
@@ -16,9 +16,10 @@ class model{
   // initializing all variable
   // decide the first player
   public model(){
-    for(int i=0;i<8;i++){
-      for(int j=0;j<8;j++)
-        table[i][j] = NO_COIN;
+    for(int y = 0; y < 8; y++){
+      for(int x = 0; x < 8; x++){
+        table[y][x] = NO_COIN;
+      }
     }
     table[3][3] = BLACK;
     table[3][4] = WHITE;
@@ -111,21 +112,8 @@ class model{
     }
   }
 
-//  //オセロの枚数を確認するメソッド
-//  public void countCoin(){
-//    black = 0;
-//    white = 0;
-//    for(int i=0;i<8;i++){
-//      for(int j=0;j<8;j++){
-//        if(table[i][j] == 1)
-//          black++;
-//        else if(table[i][j] == -1)
-//          white++;
-//      }
-//    }
-//  }
-
-  private void enable_board(){
+  // update enable
+  private void updateEnable(){
     for(int y = 0; y < 8; y++){
       for(int x = 0; x < 8; x++){
         enable[y][x] = judge[y][x];
@@ -133,8 +121,11 @@ class model{
     }
   }
 
-  public boolean get_enable(int y, int x){
+  // return enable[y][x]
+  public boolean getEnable(int x, int y){
     return enable[y][x];
   }
+
+  //
 
 }

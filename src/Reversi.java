@@ -1,16 +1,13 @@
+// Reverci Program
 
-import java.io.*;
-import javax.swing.JFrame;
-
-class Reverce{
-  public static void main(String[] args) throws IOException {
+class Reverci{
+  public static void main(String[] args){
     Model M = new Model();
-    View V = new View(M);
-    Controll C = new Controll();
-    JFrame frame = new JFrame("Reversi");
+    View V = new View();
 
-    frame.setVisible(true);
-
+    while(M.playable){
+      
+    }
     do{
       V.PutTable(M);
       while(true){
@@ -23,15 +20,6 @@ class Reverce{
       M.countCoin();
       M.player = -M.player;
     }while(M.black + M.white < 64);
-
-    V.PutTable(M);
-    System.out.println("ÉQÅ[ÉÄèIóπÅI");
-    if(M.black > M.white)
-      System.out.println("blackÇÃèüÇø");
-    else if(M.black < M.white)
-      System.out.println("whiteÇÃèüÇø");
-    else
-      System.out.println("à¯Ç´ï™ÇØ");
 
   }
 }
