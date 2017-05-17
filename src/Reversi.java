@@ -4,22 +4,28 @@ class Reverci{
   public static void main(String[] args){
     Model M = new Model();
     View V = new View();
+    int indexX;
+    int indexY;
 
-    while(M.playable){
-      
+    while(M.playable()){
+      do{
+        indexX = V.getClickedIndexX();
+	indexY = V.getClickedIndexY();
+      while(M.judge(indexX, indexY) == false);
+      M.putcoin(V.getC
     }
     do{
-      V.PutTable(M);
+      v.puttable(m);
       while(true){
-        C.readCoord();
-        if(M.InField(C.inX, C.inY))
+        c.readcoord();
+        if(m.infield(c.inx, c.iny))
           break;
       }
-      M.putCoin(C.inX, C.inY);
-      M.reverceCoin(C.inX, C.inY);
-      M.countCoin();
-      M.player = -M.player;
-    }while(M.black + M.white < 64);
+      m.putcoin(c.inx, c.iny);
+      m.revercecoin(c.inx, c.iny);
+      m.countcoin();
+      m.player = -m.player;
+    }while(m.black + m.white < 64);
 
   }
 }

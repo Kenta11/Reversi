@@ -16,6 +16,12 @@ class model{
   // initializing all variable
   // decide the first player
   public model(){
+    initBoard();
+    color = BLACK;
+  }
+
+  // initialize a board
+  private void initBoard(){
     for(int y = 0; y < 8; y++){
       for(int x = 0; x < 8; x++){
         table[y][x] = NO_COIN;
@@ -27,6 +33,10 @@ class model{
     table[4][4] = BLACK;
     black = 2;
     white = 2;
+  }
+
+  // select color
+  private void randomColor(){
     Random rm = new Random();
     if(rm.nextInt(100)%2 == 1)
       player = BLACK;
@@ -44,7 +54,7 @@ class model{
     return (0 <= x && x < 8 && 0 <= y && y < 8);
   }
 
-  // checking whether (x, y) is able to put a coin
+  // checking whether (x, y) is able to be put a coin
   public boolean judge(int x, int y){
     int dx,dy;	// displacement
     int curX,curY;  // current coordinate
@@ -122,10 +132,19 @@ class model{
   }
 
   // return enable[y][x]
-  public boolean getEnable(int x, int y){
-    return enable[y][x];
+  public boolean getEnable(){
+    return enable;
   }
 
-  //
+  // whether you can put a coin
+  public boolean playable(){
+    for(int y = 0; y < 8; y++){
+      for(int x = 0; x < 8; x++){
+        if(enable[y][x]) return true;
+      }
+    }
+
+    return false;
+  }
 
 }

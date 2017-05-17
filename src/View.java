@@ -70,8 +70,12 @@ public class View implements MouseListener{
     repaint();
   }
 
-  public int[] getClickedIndex(){
-    return clicked;
+  public int getClickedIndexX(){
+    return clicked[0];
+  }
+
+  public int getClickedIndexY(){
+    return clicked[1];
   }
 
   // mouse event method
