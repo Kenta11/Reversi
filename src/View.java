@@ -29,6 +29,11 @@ public class View implements MouseListener{
     frame.pack();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    InitButton();
+    frame.setVisible(true);
+  }
+
+  public void InitButton(){
     Container p = frame.getContentPane();
     p.setLayout(null);
 
@@ -48,7 +53,6 @@ public class View implements MouseListener{
 	p.add(button[y][x]);
       }
     }
-    frame.setVisible(true);
   }
 
   public void updateButton(int x, int y, int attribute){
@@ -81,8 +85,7 @@ public class View implements MouseListener{
   public void mouseClicked(MouseEvent e){
     JButton clickedButton = (JButton)e.getComponent();
     String indexOfTheBoard[] = clickedButton.getActionCommand().split(",", 0);
-    clicked.x = Integer.parseInt(indexOfTheBoard[0]);
-    clicked.y = Integer.parseInt(indexOfTheBoard[1]);
+    clicked = new Point(Integer.parseInt(indexOfTheBoard[0]), Integer.parseInt(indexOfTheBoard[1]));
     System.out.println("clicked on " + clicked.x + "," + clicked.y);
   }
 
