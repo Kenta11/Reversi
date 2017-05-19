@@ -1,10 +1,11 @@
 // Reversi Program
 
+import java.awt.Point;
+
 class Reversi{
   private Model M;
   private View V;
-  private int indexX;
-  private int indexY;
+  private Point index;
 
   public Reversi(){
     M = new Model();
@@ -14,13 +15,12 @@ class Reversi{
   public void play(){
     while(M.playable()){
       do{
-        indexX = V.getClickedIndexX();
-        indexY = V.getClickedIndexY();
-      }while(M.judge(indexX, indexY) == false);
-      M.putCoin(indexX, indexY);
-      M.reverceCoin(indexX, indexY);
-      M.changePlayer();
+        index = V.getClickedIndex();
+      }while(M.judge(index) == false);
+      M.putCoin(index);
+      M.reverceCoin(index);
       V.updateButton(M.getTable());
+      M.changePlayer();
     }
   }
 }
